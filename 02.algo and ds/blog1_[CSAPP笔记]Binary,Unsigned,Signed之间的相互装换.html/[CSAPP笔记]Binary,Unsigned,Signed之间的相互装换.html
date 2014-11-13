@@ -1,0 +1,162 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>[CSAPP笔记]Binary,Unsigned,Signed之间的相互装换</title></head><body><h2 id="csapp-binary-unsigned-signed">[CSAPP笔记]Binary , Unsigned , Signed 之间的相互装换</h2>
+<p>Sublime Text 2 下使用Markdown写博客的处女作，试试效果。</p>
+<h3 id="_1">摘要</h3>
+<p>本文主要讲解 Binary , Unsigned , Signed 三种数据中任意两者之间的转换。下面是文中的一些约定写法。</p>
+<ul>
+<li>转换名称<ul>
+<li>B2U<sub>w</sub>(<strong><em>x</em></strong>) : 将位数为w的二进制数 <em>binary</em> 转换为无符号数<em>Unsigned</em></li>
+<li>B2T<sub>w</sub>(<strong><em>x</em></strong>) : 将位数为w的二进制数 <em>binary</em> 转换为补码 <em>Two's complement</em></li>
+</ul>
+</li>
+<li>二进制数的表示(<strong><em>x</em></strong>) : 用一个向量表示，<strong><em>x</em></strong>=( x<sub>1</sub> , x<sub>2</sub> , ... , x<sub>w</sub>)</li>
+</ul>
+<h3 id="1-u2b-wzxhzdk-0-w-wzxhzdk-1-x">1.  U2B<sub>w</sub>(x)</h3>
+<p>直接用辗转相除法即可。  </p>
+<h3 id="2-s2b-wzxhzdk-2-w-wzxhzdk-3-x">2.  S2B<sub>w</sub>(x)</h3>
+<p>正数直接装换，然后左边添加<code>0</code> ； 负数先将其绝对值装换成二进制数，再对低<code>w-1</code>位取反，最高位添加<code>1</code>，用公式表示即为：
+下面以三位的三进制数来说明有符数的补码表示</p>
+<ul>
+<li>3 = 011</li>
+<li>2 = 010</li>
+<li>1 = 001</li>
+<li>0 = 000</li>
+<li>-1 = 111</li>
+<li>-2 = 110</li>
+<li>-3 = 101</li>
+<li>-4 = 100</li>
+</ul>
+<h3 id="3-b2u-wzxhzdk-4-w-wzxhzdk-5-x">3.  B2U<sub>w</sub>(x)</h3>
+<p>公式：</p>
+<p>$a^2 + b^2 = c^2$</p>
+<p>$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$</p>
+<p>$$\frac{1}{\pi}=\frac{2\sqrt{2}}{9801}\sum_{k=0}^\infty\frac{(4k)!(1103+26390k)}{(k!)^4396^{4k}}$$</p>
+<h3 id="4-b2t-wzxhzdk-6-w-wzxhzdk-7-x">4.  B2T<sub>w</sub>(x)</h3>
+<p>公式：</p>
+<p>小结 --
+两个图片：</p>
+<h3 id="5-u2t-wzxhzdk-8-w-wzxhzdk-9-x">5.  U2T<sub>w</sub>(x)</h3>
+<p>函数  U2T<sub>w</sub>(x) 定义为  U2T<sub>w</sub>(x) = B2T<sub>w</sub>(U2B<sub>w</sub>(x)) 。这个函数输入的是一个  0 ~ 2<sup>(w-1)</sup>-1  之间的数，输出则为一个  -2<sup>w</sup> ~ 2<sup>(w-1)</sup>  之间的数。</p>
+<h3 id="6-t2u-wzxhzdk-24-w-wzxhzdk-25-x">6.  T2U<sub>w</sub>(x)</h3>
+<p>函数  T2U<sub>w</sub>(x)  定义为  T2U<sub>w</sub>(x) =  T2B<sub>w</sub>(B2U<sub>w</sub>(x)) 。这个函数输入的是一个 -2<sup>(w-1)</sup> ~ 2<sup>(w-1)</sup>-1  之间的数，而输出的无符数也即为该有符数的补码表示。</p></body></html>

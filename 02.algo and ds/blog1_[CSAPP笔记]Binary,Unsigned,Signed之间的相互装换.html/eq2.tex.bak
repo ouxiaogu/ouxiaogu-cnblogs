@@ -1,0 +1,8 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\begin{document}
+    \begin{align}
+a &= b+c+d \\
+x &= y+z
+\end{align}
+\end{document} 

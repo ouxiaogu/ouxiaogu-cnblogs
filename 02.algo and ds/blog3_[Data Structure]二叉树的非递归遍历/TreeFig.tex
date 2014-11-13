@@ -1,0 +1,40 @@
+% MergeSort-RecursionTree
+% Manuel Kirsch
+\documentclass[border=50mm,varwidth]{standalone}
+\usepackage[pdftex,active,tightpage]{preview} % for convert pdf to tiff,png,etc
+% then convert pdf to png256 in GSView
+\usepackage{standalone}
+\usepackage{tikz}
+\title{Tree Transverse}
+\author{YPC}
+\date{}
+\begin{document}
+\begin{preview}
+\definecolor{RoofRGB}{RGB}{179,103,75}
+\definecolor{NodeRGB}{RGB}{66,204,102}
+\begin{tikzpicture}[level/.style={sibling distance=35mm/#1}]
+\node [circle,draw,fill=RoofRGB] (0){$E$}{
+  child { node [circle,draw,fill=NodeRGB] (1) {$D$}
+    child {node [circle,draw,fill=NodeRGB] (2) {$B$}
+      child {node [circle,draw,fill=NodeRGB] (3) {$A$}
+        child {node  (4) {$$}}
+        child {node  (5) {$$}} }
+      child {node [circle,draw,fill=NodeRGB] (6) {$C$}
+        child {node  (7) {$$}}
+        child {node  (8) {$$}} }
+      }
+    child {node  (9) {$$}}
+   }
+   child { node [circle,draw,fill=NodeRGB] (10) {$H$}{
+      child {node [circle,draw,fill=NodeRGB] (11) {$F$}{
+        child {node  (12) {$$}}
+        child {node [circle,draw,fill=NodeRGB] (13) {$G$}
+          child {node  (14) {$$}}
+          child {node  (15) {$$}} }
+        }}
+      child {node (16) {$$}}
+   }}
+};
+\end{tikzpicture}
+\end{preview}
+\end{document} 

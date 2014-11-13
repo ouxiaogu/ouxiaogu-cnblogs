@@ -1,0 +1,14 @@
+\documentclass[varwidth]{standalone}[2011/12/21]
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+    \draw (0,0) rectangle (2,3);
+\end{tikzpicture}%
+
+\begin{tabular}{cc}
+ a & b \\\hline
+ b & c \\
+ d & e \\
+\end{tabular}%
+\end{document}

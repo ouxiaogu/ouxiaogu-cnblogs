@@ -1,0 +1,29 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{booktabs}
+%\usepackage{array,longtable}
+\setmainfont{SimSun}
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+\begin{tikzpicture}
+\node (tabular){
+%    \begin{table}[htbp]
+%    \centering
+    % lcr 非常关键 代表三列数据各自的对齐方式
+    \centering
+    \begin{tabular}{lcr}
+        \hline
+        操作系统& 发行版& 编辑器\\
+        \hline
+        Windows & MikTeX & TexMakerX \\
+        Unix/Linux & teTeX & Kile \\
+        Mac OS & MacTeX & TeXShop \\
+        通用& TeX Live & TeXworks \\
+        \hline
+    \end{tabular} };
+    %\end{table}};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<!-- pandoc -s blog0.md -o blog0.html -->
+<h1 id="opencv笔记opencv中显示多张图像">[OpenCV笔记]OpenCV中显示多张图像</h1>
+<h2 id="摘要">摘要</h2>
+<p>本文主要介绍OpenCV中同时显示多张图像的方法，有点类似MATLAB中的subplot，只是暂时还没有subplot那么完善，这种方法主要思想和用到的技术为：</p>
+<ul>
+<li>主要思想：将多张小图组合成一张大图来显示</li>
+<li>组合方式：按照图片的数量，将大图分割成特定的行列数，每一个小块放一张子图</li>
+<li>输入方式：使用<cstdarg> 中的 type va_list ，就可定义形参数目不确定的函数了。</li>
+</ul>
+<h2 id="va_list">1. va_list</h2>
+<ul>
+<li><strong>va_start</strong> Initialize a variable argument list (macro ) 初始化可变参数列</li>
+<li><strong>va_arg</strong> Retrieve next argument (macro ) 读取下一个参数</li>
+<li><strong>va_end</strong> End using variable argument list (macro ) 结束可变参数列的使用 下面是va_list的一个应用例子： void PrintFloats (int n, ...) { int i; double val; printf (&quot;Printing floats:&quot;); va_list vl; va_start(vl,n); for (i=0;i&lt;n;i++) { val=va_arg(vl,double); printf (&quot; [%.2f]&quot;,val); } va_end(vl); printf (&quot;&quot;); }</li>
+</ul>
+<h2 id="cvshowmultiimages">2. cvShowMultiImages</h2>
+<p>程序需要的头文件： #include <stdio.h> // printf #include <stdarg.h> // va_list, va_start, va_arg, va_end #include &quot;cv.h&quot; #include &quot;opencv2/highgui/highgui_c.h&quot; 主体程序： void cvShowMultiImages(char* title,int nChannels, int nArgs, ...) { // img - Used for getting the arguments IplImage* img;</p>
+<pre><code>// DispImage - the image in which all the input images are to be copied
+IplImage* DispImage;
+
+int size_r,size_c;    // size - the size of the images in the window
+int ind;        // ind - the index of the image shown in the window
+int x_c, y_r;    // x_c,y_r - the coordinate of top left coner of input images
+int w, h;    // w,h - the width and height of the image
+
+// r - Maximum number of images in a column 
+// c - Maximum number of images in a row 
+int r, c;
+
+// space - the spacing between images
+int space_r,space_c;
+
+// If the number of arguments is lesser than 0 or greater than 12
+// return without displaying 
+if(nArgs &lt;= 0) {
+    printf(&quot;Number of arguments too small..../n&quot;);
+    return;
+}
+else if(nArgs &gt; 12) {
+    printf(&quot;Number of arguments too large..../n&quot;);
+    return;
+}
+// Determine the size of the image, 
+// and the number of rows/cols 
+// from number of arguments 
+else if (nArgs == 1) {
+    r = c = 1;
+    size_r = 480; size_c = 640 ; 
+}
+else if (nArgs == 2) { // x_c = size_row y_r=size_col
+    r = 1; c = 2;
+    // size_r = 705; size_c = 350 ; // specail set for show the full story of lena
+    size_r = 405; size_c = 540 ; 
+}
+else if ( nArgs == 3 || nArgs == 4) {
+    r = 2; c = 2;
+    size_r = 405; size_c =540 ; 
+}
+else if (nArgs == 5 || nArgs == 6) {
+    r = 2; c = 3;
+    size_r = 360; size_c = 480;
+}
+else if (nArgs == 7 || nArgs == 8) {
+    r = 2; c = 4;
+    size_r = 200; size_c = 240;
+}
+else {
+    r = 3; c = 4;
+    size_r = 150; size_c = 200; 
+}
+
+// Create a new 3 channel image to show all the input images 
+// cvSize(width,height)=(col,row)=(y_r,x_c) 
+DispImage = cvCreateImage( cvSize(30 + size_c*c,40 + size_r*r), IPL_DEPTH_8U, nChannels );
+
+// Used to get the arguments passed
+va_list args;
+va_start(args, nArgs); // stdarg.h
+
+// Loop for nArgs number of arguments
+space_r = 40/(r+1);
+space_c = 30/(c+1);
+for (ind = 0, x_c = space_c, y_r = space_r; ind &lt; nArgs; ind++, x_c += (space_c + size_c)) {
+
+    // Get the Pointer to the IplImage
+    img = va_arg(args, IplImage*);  // stdarg.h
+
+    // Check whether it is NULL or not
+    // If it is NULL, release the image, and return
+    if(img == 0) {
+        printf(&quot;Invalid arguments&quot;);
+        cvReleaseImage(&amp;DispImage);
+        return;
+    }
+
+    // Find the width and height of the image
+    w = img-&gt;width;
+    h = img-&gt;height;
+
+    // Used to Align the images
+    // i.e. Align the image to next row e.g.r=1,c=2, this row is end , we have ind%c==0 ,
+    // then we move to the next row,even the next row can&#39;t through the cond  ind &lt; nArgs
+    if( ind % c == 0 &amp;&amp; x_c!= space_c) {
+        x_c  = space_c;
+        y_r += space_r + size_r;
+    }
+
+    // Set the image ROI to display the current image
+    cvSetImageROI(DispImage, cvRect(x_c, y_r, size_c, size_r));
+    //cvSetImageROI(DispImage, cvRect(x_c, y_r, (int)( w/scale_x ), (int)( h/scale_y )));
+
+    // Resize the input image and copy the it to the Single Big Image
+    cvResize(img, DispImage);
+
+    // Reset the ROI in order to display the next image
+    cvResetImageROI(DispImage);
+}
+
+// Create a new window, and show the Single Big Image
+cvNamedWindow( title, 1 );
+cvShowImage( title, DispImage);
+cvWaitKey(0);
+// End the number of arguments
+va_end(args);
+
+// Release the Image Memory
+cvReleaseImage(&amp;DispImage);</code></pre>
+<p>}</p>
+<h2 id="程序调用与结果">3. 程序调用与结果</h2>
+<p>应用时，请注意<strong>所有输入的图像都应该为同一个通道数：1或者3</strong> cvShowMultiImages(&quot;Lena1&quot;,3,2,src1,edges1Color); cvShowMultiImages(&quot;Lena2&quot;,3,2,src2,edges2Color); 显示结果为：</p>
+<p>其实我更想展示的是 ———— The Complete Story of Lena ：</p>
+<h3 id="reference">reference</h3>
+<ol style="list-style-type: decimal">
+<li>va_list - C++ Reference</li>
+<li>opencv中文论坛</li>
+</ol>
+</body>
+</html>

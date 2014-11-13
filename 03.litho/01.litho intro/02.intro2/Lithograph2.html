@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<!-- pandoc -s Lithograph2.md -o Lithograph2.html -->
+<p>接上一篇介绍IC制造的基本过程，光刻的基本过程。这篇文章继续介绍光刻过程中的一些概念。 目录</p>
+<ol style="list-style-type: decimal">
+<li>[IC][IC]Lithograph(0)半导体制造的基本过程 http://www.cnblogs.com/ouxiaogu/p/3407485.html</li>
+<li>[IC]Lithograph(1)光刻技术分析与展望 http://www.cnblogs.com/ouxiaogu/p/3408374.html</li>
+<li>[IC]Lithograph(1)光刻技术的精度分析</li>
+</ol>
+<h2 id="光刻投影系统的分辨率">1. 光刻投影系统的分辨率</h2>
+<p>投射到晶圆片上的特征图的精度，取决于投影系统的光波长，以及经过光掩膜板(illuminated mask)衍射光的衍射级次有多少能被会聚透镜(缩图透镜the reduction lens system)捕获。当前最常用的光刻机使用的深紫外光(deep ultraviolet,DUV)，是由波长为248nm和193nm的受激准分子激光器产生的。因此，当前主要的光刻技术也被称为“准分子激光光刻”。</p>
+投影系统能够刻印的最小特征尺寸可用瑞利判据给出：
+
+<p>$ ,CD $ 为最小特征尺寸(也称为critical dimension)，也常常写成半径的2倍，即$ R = k_1 <span class="math">；</span> ,k_1 <span class="math"><em>因</em><em>子</em>，<em>是</em><em>光</em><em>刻</em><em>系</em><em>统</em><em>的</em><em>相</em><em>关</em><em>系</em><em>数</em>，<em>一</em><em>般</em><em>为</em>0. 4；<em>采</em><em>用</em><em>计</em><em>算</em><em>光</em><em>刻</em><em>技</em><em>术</em><em>处</em><em>理</em><em>之</em><em>后</em>，<em>这</em><em>个</em><em>系</em><em>数</em><em>还</em><em>能</em><em>有</em><em>一</em><em>定</em><em>的</em><em>减</em><em>小</em>；</span> ,<span class="math"><em>为</em><em>光</em><em>的</em><em>波</em><em>长</em>；</span> ,NA $,为从晶圆的角度看过去的数值孔径。</p>
+<p>通过这个公式，我们以看到分辨率R与光源波长$ ,<span class="math"><em>是</em><em>成</em><em>正</em><em>比</em><em>的</em>。<em>要</em><em>提</em><em>高</em><em>分</em><em>辨</em><em>率</em></span>R<span class="math">，<em>可</em><em>以</em><em>减</em><em>小</em><em>光</em><em>波</em><em>波</em><em>长</em></span> ,<span class="math">，<em>增</em><em>大</em><em>数</em><em>值</em><em>孔</em><em>径</em></span> ,NA <span class="math">。<em>当</em><em>掩</em><em>模</em><em>版</em><em>图</em><em>形</em><em>尺</em><em>寸</em><em>远</em><em>大</em><em>于</em><em>光</em><em>源</em><em>波</em><em>长</em></span> ,<span class="math">, <em>亦</em><em>即</em><em>远</em><em>大</em><em>于</em><em>分</em><em>辨</em><em>率</em></span>R$时,由衍射产生的图形偏差可以忽略不计,在这种情况下光刻胶膜中通过曝光形成的光刻图形与掩模版图形基本相同。然而由于技术发展和资金规模的限制,光刻机所用光源波长的减小，速度远远慢于电路特征尺寸的减小速度。而且随着生产工艺的演进,光刻波长与特征尺寸两者之间的差距越来越小。</p>
+另外,由于硅片平整度误差!光刻胶厚度不均匀!调焦误差以及视场弯曲等因素的 存在,最佳成像平面与实际成像平面之间总是存在一定误差&quot;这被称之为离焦,离焦一般会导致畸变的进一步加剧&quot;并且由于光刻胶层有一定的厚度,要保证蚀刻质量也要求其上下表面的成像有一定的一致性&quot;这都要求成像系统要在理想成像平面上下一定范围之内都要有较佳的成像效果,一般将这一范围称之为焦深(DepthofFocus,DoF)&quot;。焦深可以通过下面的公式计算：
+
+<p><span class="math"> <em>k</em><sub>2</sub></span>,为另一个与相关的系数。 可以看到<span class="math"><em>D</em><sub><em>F</em></sub></span>也是与光源波长是成正比的,与数值孔径成反比的。但不同的是，分辨率<span class="math"><em>R</em></span>是越小越好,而焦深<span class="math"><em>D</em><sub><em>F</em></sub></span>则是越大越好。因此如果通过减小光源波长以及增大NA的方法提高分辨率则同时也会降低系统的焦深,两者是矛盾的。</p>
+<p>现在的光刻，已经很长时间处于“亚波长光刻”时代。以gonm和65nm节点为例,其生产时所采用的ArF光源波长为193nm,特征尺寸还不到光源波长的一半&quot;。由图1，可以看到，在EUVL技术大规模商用之前，光刻技术很长时间都将处于“亚波长光刻”时代，而且特征尺寸与光源波长的之间的间隔一直在扩大。</p>
+<p>因此，下一代光刻技术(Next Generation Lithography,NGL)的开发变得十分紧迫，常见的有如下几种,在上一篇文章中也已经有所介绍：</p>
+<ul>
+<li>极紫外光刻(Extreme Ultraviolet Lithography,EUVL</li>
+<li>纳米压印光刻(Nanoimprint Lithography,NIL)</li>
+<li>电子束曝光光刻(Electron-beam Projection Lithography,EPL)</li>
+</ul>
+<h2 id="光学邻近效应">2. 光学邻近效应</h2>
+<p>由前面的文章可知，NGL尚未大规模应用之前，光刻很长时间都会处在“亚波长光刻”时代。所生产集成电路的特征尺寸接近曝光系统的理论分辨率极限&quot;在这种情况下,硅片表面成像相对于原始版图出现边角圆化,线端缩短,线宽偏差等严重的不一致。这种掩模图形和硅基表面实际印刷图形之间的图形转移失真现象,一般被称之为光学邻近效应(OPE, Optical Proximity Effects)</p>
+<h2 id="分辨率增强技术">3. 分辨率增强技术</h2>
+<p>为了减轻以及抵消亚波长光刻工艺产生的日益严重的光学邻近效应,业界提出并 广泛采用了在不改变光刻波长的前提下通过控制光刻系统的其他各项参数(减小<span class="math"><em>k</em><sub>1</sub></span>,增大<span class="math"><em>k</em><sub>2</sub></span>，来实现提高图形转移质量,减小光刻畸变和提高系统焦深的分辨率增强技术(Resolution Enhancement Teehnology,RET)。</p>
+<ul>
+<li>分辨率增强技术(RET):
+<ul>
+<li>邻近效应校正(Optical Proximity Correcttion,OPC)</li>
+<li>移相掩膜(Phase Shifting Mask,PSM)</li>
+<li>偏轴照明(Off Axis Illumination,OAI)</li>
+<li>次分辨率辅助图形(Sub-Resolution Assist Feature,SRAF)</li>
+</ul></li>
+</ul>
+<p>reference</p>
+<ol style="list-style-type: decimal">
+<li>陈晔. &quot;适用于超深亚微米集成电路制造与验证流程的光学邻近修正方法研究.&quot; PhD diss., 浙江大学, 2008.</li>
+<li>wiki::Computational_lithography http://en.wikipedia.org/wiki/Computational_lithography</li>
+</ol>
+</body>
+</html>

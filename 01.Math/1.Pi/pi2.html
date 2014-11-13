@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<!-- pandoc -s pi2.md -o pi2.html -->
+<p>[Math]Pi(2)</p>
+<p>接着前一篇，[[Math]Pi(1)][ref1]，下面继续介绍Leonard Euler求<code>Pi</code>的第二个公式。 [ref1]:http://www.cnblogs.com/ouxiaogu/p/3398284.html</p>
+<p>其实这个公式也是来源一个古老的问题，[Basel problem][ref2] [ref2]:http://en.wikipedia.org/wiki/Basel_problem</p>
+<h2 id="证法1.麦克劳伦级数和零点式">证法1.麦克劳伦级数和零点式</h2>
+<span class="math"><em>s</em><em>i</em><em>n</em>(<em>x</em>)</span>的 Maclaurin Series为：
+
+再把 <span class="math">$\frac{\sin(x)}{x}$</span> 表示成零点处的多项式：
+
+对比算式(1)和(2)中的<span class="math"><em>x</em><sup>2</sup></span>项的系数有： <br /><span class="math">$-\left(\frac{1}{\pi^2} + \frac{1}{4\pi^2} + \frac{1}{9\pi^2} + \cdots \right) =-\frac{1}{\pi^2}\sum_{n=1}^{\infty}\frac{1}{n^2}=-\frac{1}{3!}$</span><br />
+
+<h2 id="证法2.傅里叶级数">证法2.傅里叶级数</h2>
+<h3 id="fourier-series">1.Fourier series</h3>
+<br /><span class="math">$ f(x)=\dfrac{a_{0}}{2}+\sum_{n=1}^{\infty }(a_{n}\cos nx+b_{n}\sin x),-\pi \leq x\leq \pi $</span><br /> 其中，
+
+<h3 id="fxx2的傅里叶级数">2. <span class="math"><em>f</em>(<em>x</em>) = <em>x</em><sup>2</sup><em>的</em><em>傅</em><em>里</em><em>叶</em><em>级</em><em>数</em></span></h3>
+当<span class="math"><em>n</em> = 0</span>， <br /><span class="math">$a_{0}=\dfrac{1}{\pi }\int_{-\pi }^{\pi }x^{2}dx=\dfrac{2}{\pi }\int_{0}^{\pi
+}x^{2}dx=\dfrac{2\pi ^{2}}{3}.$</span><br /> 当<span class="math"><em>n</em> = 1, 2, 3, . . . </span>，
+
+因此，
+
+将<span class="math"><em>f</em>(<em>π</em>) = <em>π</em><sup>2</sup></span>代入上式
+
+最后，我们就可以得到：
+</body>
+</html>

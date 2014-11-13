@@ -1,0 +1,14 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\begin{document}
+    \begin{gather}
+    f(-k,k) = (2k+1)^2 , \qquad k=0,1,2...\\
+    f(k,-(k-1)) = (2k)^2, \qquad k=1,2...
+    \end{gather}
+    $N=maxAbs$  \\
+    $f(r,c)=f(-N,N)-(N-c), \qquad r=-N,r<c$  \\ % 北
+    $f(r,c)=f(-(N-1),(N-1))+(r+(N-1))+1, \qquad c=N,r>-c$    \\ % 东
+    $f(r,c)=f(N,-(N-1))-(c+(N-1)), \qquad r=N,r>c$    \\ % 南
+    $f(r,c)=f(N,-(N-1))+(N-r)+1, \qquad c=-N,r<-c$    \\ % 西
+\end{document} 
+

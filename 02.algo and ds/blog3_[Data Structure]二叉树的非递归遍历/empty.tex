@@ -1,0 +1,30 @@
+\documentclass{standalone}
+\usepackage[pdftex,active,tightpage]{preview} % for convert pdf to tiff,png,etc
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{indentfirst} % 首行缩进 indentfirst.sty
+\usepackage{booktabs}
+\usepackage{array,longtable}
+
+\setmainfont{SimSun}
+\setlength {\parindent }{2em} % 设置首行缩进量
+\addtolength {\parskip }{3pt} % 设置段间距
+\linespread {1.3} %一倍半行距
+
+%\begin{CJK}{GBK}{song}% 设置字体
+\begin{document}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{ p{80pt} > {\centering} p{80pt} > {\raggedleft 
+    \arraybackslash}p{80pt} }
+    \toprule
+    操作系统& 发行版& 编辑器\\
+    \midrule
+    Windows & MikTeX & TexMakerX \\
+    Unix/Linux & teTeX & Kile \\
+    Mac OS & MacTeX & TeXShop \\
+    通用& TeX Live & TeXworks \\
+    \bottomrule
+\end{tabular}
+\end{table}
+\end{document}

@@ -1,0 +1,258 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>template</title></head><body><h1 id="atx">标题：Atx方式</h1>
+<h1 id="1">标题1</h1>
+<h2 id="2">标题2</h2>
+<h6 id="6">标题6</h6>
+<p>或者可以在后面添加若干 # ，并且不一定要和前面的个数对应：</p>
+<h1 id="1_1">标题1</h1>
+<h2 id="2_1">标题2</h2>
+<h6 id="6_1">标题6</h6>
+<h1 id="_1">代码段</h1>
+<ol>
+<li>使用 <code>定义
+<code>
+import os
+</code></li>
+<li>使用 <code>来定义，同样</code> 在前后都要独占一行。</li>
+</ol>
+<pre><code>import os
+</code></pre>
+
+<ol>
+<li>
+<p>使用缩近块，每行要缩近4个空格或1个制表符，中间可以有空行，如：
+    import os</p>
+<p>os.path</p>
+</li>
+</ol>
+<h1 id="_2">行内代码标记</h1>
+<p>可以使用 <code></code> 或 <code>来引用行内的代码。如：
+This is &lt;code&gt;test&lt;/code&gt; and</code>test`.</p>
+<h1 id="_3">引用</h1>
+<p>. 行首使用 &gt; 加上一个空格表示引用段落，内部可以嵌套多个引用</p>
+<blockquote>
+<p>这是一个引用，
+这里木有换行，   </p>
+<p>在这里换行了。</p>
+<blockquote>
+<p>内部嵌套</p>
+</blockquote>
+</blockquote>
+<h1 id="_4">列表</h1>
+<h2 id="_5">无序列表</h2>
+<p>无序列表使用 * , +, - 后面加空格来表示，且无序列表要和正文用空行隔开。列表可以嵌套，下一级的列表前面应缩近4个空格或1个制表符。</p>
+<ul>
+<li>a</li>
+<li>b</li>
+<li>
+<p>c</p>
+<ul>
+<li>c1</li>
+<li>c2
+如果一行太长写不下，可以是多行，如：</li>
+</ul>
+</li>
+<li>
+<p>a         // 输出 . a b c
+   b c</p>
+</li>
+<li>b
+在列表中可以嵌套其它的格式,如代码，quote引用</li>
+</ul>
+<h2 id="_6">有序列表</h2>
+<p>使用数字加英文句号加空格表示。如：</p>
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ol>
+<h1 id="_7">分隔线</h1>
+<p>在一行中使用三个或三个以上的 *、- 或 _ 可以添加分隔线，其中可以有空白，但是不能有其他字符。如：</p>
+<hr />
+<hr />
+<hr />
+<h1 id="html">HTML片段</h1>
+<p>首列以 &lt; 开始的将视为HTML片段，如：
+<img src="/uploads/tutorials/7/b3120c84d0be11e1a70ff23c91df0780.png"></p>
+<h1 id="_8">图片</h1>
+<p>图片的写法和链接差不多，就是在前面多加一个 !  如：
+<img alt="Test" src="/uploads/tutorials/7/b3120c84d0be11e1a70ff23c91df0780.png" /></p>
+<h1 id="_9">文本段</h1>
+<p>文本段可以由多行文本组成，以空行作为一个段落的结束。首字符不能是特殊的段落开始符。除首行外，第二行可以前面有空格。如：</p>
+<p>This is a test
+paragraph.
+This is a test
+    paragraph.</p>
+<h1 id="define-a-ref-urf">define a ref/urf 参考定义</h1>
+<p>先如下定义：
+This is <a href="http://example.com/" title="Optional Title Here">an example</a> reference-style link.
+然后在文章的任意位置定义：</p>
+<h1 id="_10">强调</h1>
+<p>有以下几种强调方式：</p>
+<ul>
+<li>单星号 = <em>斜体</em></li>
+<li>单下划线 = <em>斜体</em></li>
+<li>双星号 = <strong>加粗</strong></li>
+<li>双下划线 = <strong>加粗</strong></li>
+<li>三星号 = <strong><em>粗斜</em></strong></li>
+<li>三下划线 = <strong><em>粗斜</em></strong></li>
+<li>双波浪线 = ~~中划线~~</li>
+<li>尖号 = ^上标文本^</li>
+<li>E = mc<sup>2</sup></li>
+<li>Water: H<sub>2</sub>O</li>
+<li>双逗号 = ,,下标文本,,</li>
+<li>倒单引号 = <code>代码</code></li>
+</ul>
+<h1 id="par">par扩展</h1>
+<p>需要添加一个par的markdown包，点击 <a href="https://github.com/limodou/par">par</a>可以clone。</p>
+<h2 id="_11">定义段</h2>
+<p>首行应顶格，首字符不能是其它段的开始字符，如 *, +, -, # ，最后以 空格+--结束。 第二行开始为缩近段。如：</p>
+<p>a --
+    This is a definition</p>
+<h2 id="_12">表格</h2>
+<p>每行代表一个表格行，字段之间使用 || 分隔，如：
+||a||b||c||
+||a1||b1||c1||</p>
+<h2 id="bootstrap">Bootstrap 标签页</h2>
+<p>标签页是par项目做的一个Markdown语法上的扩展，需要在调用相应的解析时传入对应块的处理函数。定义格式为：</p>
+<p>[[tabs(id=hello)]]:
+    <code>This is a test</code>
+[[tabs(id=world)]]:
+    * this is a list
+    * test</p>
+<h2 id="bootstrap_1">Bootstrap 提醒</h2>
+<p>生成Bootstrap alert 的展示效果，格式为：
+[[alert(class=success)]]:
+    Success
+[[alert(class=error)]]:
+    Error
+[[alert(class=info)]]:
+    Info
+[[alert]]:
+    Message
+[[alert]]:
+    #### Alert Title
+    This is alert message
+[[alert(class=info,close)]]:
+    This is an alert. It'll has a close button.</p></body></html>

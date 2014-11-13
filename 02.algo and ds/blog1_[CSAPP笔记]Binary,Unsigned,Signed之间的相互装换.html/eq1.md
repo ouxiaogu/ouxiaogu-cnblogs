@@ -1,0 +1,48 @@
+$$B2U_w\left( \overrightarrow{x} \right) \doteq \sum_{i=0}^{w-1} x_i 2^i \label{eq1}$$
+
+$$B2T_w\left( \overrightarrow{x} \right) \doteq -x_{w-1} 2^{w-1} + \sum_{i=0}^{w-2} x_i 2^i \label{eq2}$$
+
+对于位模式 $\overrightarrow{x}$ ，对比 ([eq1]) ([eq2]) ,
+计算两者之差，我们就可以得到
+$ B2U_w\left( \overrightarrow{x} \right) - B2T_w\left( \overrightarrow{x} \right) = x_{w-1}  \left( 2^{w-1} - \left( -2^{w-1} \right) \right)  =  x_{w-1} 2^w $
+，这样就得到了
+$B2U_w\left( \overrightarrow{x} \right) = x_{w-1} 2^w + B2T_w\left( \overrightarrow{x} \right)$
+。若令 $\overrightarrow{x} = T2B_w \left( x \right) $ ，则其反函数为
+$ x = B2T_w \left( \overrightarrow{x} \right) $ 。
+由前面三式以及$T \rightarrow B \rightarrow U$变换的传递性，可得：
+
+$$B2U_w\left( T2B_w \left( x \right) \right) = T2U_w \left( x \right) = x_{w-1} 2^w + x$$
+
+这个关系对于理解“有符数变换得到的无符数也即补码”很有用。
+
+$$T2U_w \left( x \right)=\left\{
+        \begin{aligned}
+          & x+2^w, & x<0,x_{w-1}=1  \\
+          & x, & x \geq 0,x_{w-1}=0 
+        \end{aligned}
+        \right.$$
+
+下图说明了 $T2U$ 的转换行为：对于非负数（$x \geq 0$）, $T2U$ 保留原值 ；
+
+对于负数（$x<0$）,$T2U$ 被装换为一个大于$2^{w-1}$的正数。\
+反过来，我们再来推导无符号数 $u$ 和与之对应的有符号数
+$U2T_w \left( u \right) $之间的关系。 上一节我们已经得到
+$B2T_w\left( \overrightarrow{u} \right) = B2U_w\left( \overrightarrow{u} \right) - u_{w-1} 2^w $
+。若令 $\overrightarrow{u} = U2B_w \left( u \right) $ ，则其反函数为
+$ u = B2U_w \left( \overrightarrow{x} \right) $ 。由前面三式以及
+$T \rightarrow B \rightarrow U$ 变换的传递性，可得：
+
+$$B2T_w\left( U2B_w \left( u \right) \right) = U2T_w \left( u \right) = u - u_{w-1} 2^w$$
+
+在 $u$ 原始的无符号表示法中，最高位$u_{w-1}$决定了 $u$ 是否大于或等于
+$2^{w-1}$, 无符数 $u$ 到有符数的装换分段表示为：
+
+$$U2T_w \left( u \right)=\left\{
+        \begin{aligned}
+          & u, & u<2^{w-1},x_{w-1}=0  \\
+          & u-2^w,  & x \leq 0,x_{w-1}=1
+        \end{aligned}
+        \right.$$
+
+下图说明了 $U2T$ 转换行为：对于小的数（$u<2^{w-1}$）, $U2T$ 保留原值 ；
+对于大的数（$u \geq 2^{w-1}$）,$U2T$ 被装换为一个负数。

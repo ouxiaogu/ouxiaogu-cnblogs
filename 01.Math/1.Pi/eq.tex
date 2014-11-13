@@ -1,0 +1,71 @@
+\documentclass[11pt,a4paper]{article}
+%\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{amssymb} % \because \therefore
+%\setmainfont{SimSun}
+\setlength {\parindent }{2em} % head Indentation
+%\addtolength {\parskip }{3pt} % paragraph
+%\linespread {1.3} % 1.3* 
+
+\begin{document}
+start\\
+1.Taylor series 
+   \begin{equation}\label{E1}
+        f\left( x \right) = \sum\limits_{n = 0}^\infty  {\frac{{ { f^{\left( n \right)}}\left( a \right)}}{{n!}}} {\left( {x - a}\right)^n}
+   \end{equation}
+2.Maclaurin series
+   \begin{equation}\label{E2}
+        f\left( x \right) = \sum\limits_{n = 0}^\infty  {\frac{  f^{\left( n \right)}\left( 0 \right)  }{n!} } { x^n }
+   \end{equation}
+3. $f \left( x \right) = \arctan \left( x \right)$ to solve $ f^{ \prime }{ \left( x \right)}$ % f \left( x \right)
+\begin{align*}
+    &y = f \left( x \right) = \arctan \left( x \right) \\
+    &x = tan \left( y \right) 
+\end{align*}
+\begin{align*}
+    \Longrightarrow dx &= \sec^{2}y * dy \\
+     f^{ \prime }{ \left( x \right) }&= { \frac {dx}{dy} }  = {\frac{1}{ x^{2}+1 } }
+\end{align*}
+4. Step by step 
+\begin{align*}
+    \because &\arctan \left( x \right) = \int \nolimits_0^x  \frac{1}{ 1+t^{2} } \,dt \\
+             &\frac{1}{1+x^{2} } = \frac{1}{2}( \frac{1}{1-ix} + \frac{1}{1+ix} ) \\
+    \therefore &\arctan \left( x \right) = \frac{1}{2}i \left[ \ln (1-ix) -\ln (1+ix) \right]
+\end{align*}
+
+   $$ \left( \frac { f \left( x \right) } { g \left( x \right)} \right)^{\prime} = \frac { { f^{  \prime } \left( x \right) } { g \left( x \right) } - { f \left( x \right) } { g^{  \prime  } \left( x \right) } }  {  g^{2} \left( x \right) } $$
+
+\begin{align*}
+       & f ^{\left( 1 \right)}\left( x \right) = {\frac{1}{ x^{2}+1 } }  \\
+       & f ^{\left( 2 \right)}\left( x \right) = {\frac{-2x}{ \left(x^{2}+1\right)^{2} } }  \\
+       & f ^{\left( 3 \right)}\left( x \right) = {\frac{2\left( 3x^{2}-1 \right) }{ \left(x^{2}+1\right)^{3} } } \\
+       & f ^{\left( 4 \right)}\left( x \right) = {\frac{-24x\left(x^{2}-1\right) }{ \left(x^{2}+1\right)^{4} } }  \\
+       & f ^{\left( 5 \right)}\left( x \right) = {\frac{24\left(5x^{4}-10x^{2}+1\right) }{ \left(x^{2}+1\right)^{5} } } \\
+       & ...\\
+       & f ^{\left( n \right)}\left( x \right) = \frac {1}{2} (-1)^{n} i \left[ (-i+x)^{-n}-(i+x)^{-n} \right] (n-1)! \\
+       & ...\\    
+\end{align*}
+    
+\begin{align*}
+       & k_{1} = \frac{ f ^{\left( 1 \right)}\left( 0 \right) } { 1! } = 1  \\
+       & k_{2} = \frac{ f ^{\left( 2 \right)}\left( 0 \right) } { 2! } = 0  \\
+       & k_{3} = \frac{ f ^{\left( 3 \right)}\left( 0 \right) } { 3! } = \frac {-1}{3}  \\
+       & k_{4} = \frac{ f ^{\left( 4 \right)}\left( 0 \right) } { 4! } = 0  \\
+       & k_{5} = \frac{ f ^{\left( 5 \right)}\left( 0 \right) } { 5! } = \frac {1}{5}  \\
+       &...\\
+\end{align*}
+
+5.get the conclusion, Maclaurin Series.
+\\ Gregory's series or Leibniz's series
+\begin{align*}
+    \because \arctan \left( x \right)  &= \sum \limits_{n=0}^{\infty} (-1)^{n} { \frac{1}{2n+1} } x^{2n+1}   \\
+                              &= x - \frac{1}{3}x^{3} +  \frac{1}{5}x^{5} -  \frac{1}{7}x^{7} + ...\\  
+    \therefore \arctan \left( 1 \right)  &= 1-\frac{1}{3} +  \frac{1}{5} -  \frac{1}{7} + \frac{1}{9} -\frac{1}{11}+... =\frac{ \pi }{4}
+\end{align*}
+
+6.another solution \\
+
+
+
+\end{document}
+

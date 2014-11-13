@@ -1,0 +1,269 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>SORT</title></head><body><h3 id="_1">摘要</h3>
+<p>本文主要讲几种最基本的排序算法，其伪代码，以及算法复杂度分析</p>
+<p>下面算法分析注意点，以及伪代码和正常源码相比需要注意的地方</p>
+<ul>
+<li>下面所有的排序都是从小到大按升序排列</li>
+<li><strong>while</strong> <strong>for</strong> 循环的正常退出时，<strong>while</strong> <strong>for</strong> 这样的循环条件语句的执行次数比循环体要多1</li>
+<li>伪代码的元素编号从1开始，而不是0</li>
+</ul>
+<h2 id="part-1">PART 1</h2>
+<h3 id="insertion-sort">INSERTION-SORT</h3>
+<ul>
+<li>插入排序循环调动范围是A[position]&lt;-A[j],排列完后，A[1:j]为正序</li>
+<li>插入排序对第一个元素无要求</li>
+<li>插入排序用key记录待插入的元素，而每次比较都是 A[i+1] 虚位以待，当满足条件 <code>A[i]&gt;Key</code> 则令A[i]填充原虚位A[i+1]，完成后i减1，虚位前移为A[i]，内存中位置移动幅度都为1。</li>
+</ul>
+<p>INSERTION-SORT(A)    </p>
+<p>for j ← 2  to  length[A]  <br />
+    do key ← A[j]  <br />
+    // Insert A[j] into the sorted sequenceA[1..j-1]  <br />
+    i ← j – 1  <br />
+    while i &gt; 0 and A[i] &gt; key  <br />
+        Do A[i+1] ← A[i]  <br />
+        i ← i – 1  <br />
+    A[i+1] ← key    </p>
+<h3 id="buble-sort">BUBLE-SORT</h3>
+<ul>
+<li>冒泡排序循环调动范围是A[i]&lt;-A[n],排列完后，A[1:i]为正序，且后面未排序部分有改善</li>
+<li>冒泡排序从最后一层开始，一层一层地与上一层相比较，泡沫内的数偏大则交换，内存中位置移动幅度都为1，</li>
+</ul>
+<p>BUBLE-SORT(A)   </p>
+<p>for i ← 1 to length[A]  <br />
+    for j ← length[A] downto i+1  <br />
+        do if A[i]<A[j]  <br />        then exchange A[i] ←> A[j]    </p>
+<h3 id="selection-sort">SELECTION-SORT</h3>
+<p>SELECTION-SORT(A)  </p>
+<p>n ← length[A]<br />
+for j ← 1 to n − 1
+    do smallest ← j
+    for i ← j + 1 to n
+        do if A[i ] &lt; A[smallest]
+        then smallest ← i
+    exchange A[ j ]  A[smallest]</p>
+<h2 id="part-2">PART 2</h2>
+<h3 id="merge-sort">MERGE-SORT</h3>
+<p>MERGE(A, p, q, r)
+ 1  n1 ← q - p + 1
+ 2  n2 ← r - q
+ 3  create arrays L[1 ‥ n1 + 1] and R[1 ‥ n2 + 1]
+ 4  for i ← 1 to n1
+ 5       do L[i] ← A[p + i - 1]
+ 6  for j ← 1 to n2
+ 7       do R[j] ← A[q + j]
+ 8  L[n1 + 1] ← ∞
+ 9  R[n2 + 1] ← ∞
+10  i ← 1
+11  j ← 1
+12  for k ← p to r
+13       do if L[i] ≤ R[j]
+14             then A[k] ← L[i]
+15                  i ← i + 1
+16             else A[k] ← R[j]
+17                  j ← j + 1</p>
+<p>MERGE-SORT(A, p, r)
+1 if p &lt; r
+2   then q ← ⌊(p + r)/2⌋<br />
+3        MERGE-SORT(A, p, q)
+4        MERGE-SORT(A, q + 1, r)
+5        MERGE(A, p, q, r)</p>
+<h3 id="heap-sort">HEAP-SORT</h3>
+<p>PARENT(i)
+   return ⌊i/2⌋</p>
+<p>LEFT(i)
+   return 2i</p>
+<p>RIGHT(i)
+   return 2i + 1</p>
+<p>MAX-HEAPIFY(A, i)
+ 1 l ← LEFT(i)
+ 2 r ← RIGHT(i)
+ 3 if l ≤ heap-size[A] and A[l] &gt; A[i]
+ 4    then largest ← l
+ 5    else largest ← i
+ 6 if r ≤ heap-size[A] and A[r] &gt; A[largest]
+ 7    then largest ← r
+ 8 if largest ≠ i
+ 9    then exchange A[i] ↔ A[largest]
+10         MAX-HEAPIFY(A, largest)</p>
+<p>BUILD-MAX-HEAP(A)
+1  heap-size[A] ← length[A]
+2  for i ← ⌊length[A]/2⌋ downto 1
+3       do MAX-HEAPIFY(A, i)</p>
+<p>HEAPSORT(A)
+1 BUILD-MAX-HEAP(A)
+2 for i ← length[A] downto 2
+3    do exchange A[1] ↔ A[i]
+4       heap-size[A] ← heap-size[A] - 1
+5       MAX-HEAPIFY(A, 1)</p>
+<h3 id="quick-sort">QUICK-SORT</h3>
+<p>QUICKSORT(A, p, r)
+1 if p &lt; r
+2    then q ← PARTITION(A, p, r)
+3         QUICKSORT(A, p, q - 1)
+4         QUICKSORT(A, q + 1, r)</p>
+<p>PARTITION(A, p, r)
+1  x ← A[r]
+2  i ← p - 1
+3  for j ← p to r - 1
+4       do if A[j] ≤ x
+5             then i ← i + 1
+6                  exchange A[i] ↔ A[j]
+7  exchange A[i + 1] ↔ A[r]
+8  return i + 1</p>
+<h2 id="part-3-linear-time-sort">PART 3. Linear Time Sort #</h2>
+<h3 id="radix-sort">RADIX-SORT</h3>
+<p>LSD（Least significant digital）
+MSD（Most significant digital）
+LSB（Least significant bit）
+MSB（Most significant bit）
+T ≥ logB(n)·n·log2(B) = log2(n)·logB(2)·n·log2(B) = log2(n)·n·logB(2)·log2(B) = n·log2(n)</p>
+<h3 id="pigeonhole-sort">pigeonhole-sort</h3>
+<p>pigeonhole_sort(array A[n])<br />
+    zero_var (B)      (<em> Zero out array B </em>)
+    // count A[i]'s frequency
+    for i in [0...length(A)-1]
+        B[A[i]] := B[A[i]]+1
+    // 把结果复制回数组A, B的索引为A的值，eg.i=0,B[0]=4，即A的最小值0出现过四次，这四个排在A[0]~A[3] 
+    j := 0
+    for i in [0...length(B)-1]
+        repeat B[i] times
+            A[j] := i
+            j := j+1</p>
+<h3 id="bucket-sort">bucket-sort 桶排序或箱排序</h3>
+<p>Bucket sort works as follows:</p>
+<ul>
+<li>Set up an array of initially empty "buckets".</li>
+<li>Scatter: Go over the original array, putting each object in its bucket.</li>
+<li>Sort each non-empty bucket.</li>
+<li>Gather: Visit the buckets in order and put all elements back into the original array.</li>
+</ul>
+<p>bucket-sort(array A)
+    n ← length(A)
+    buckets ← new array of n empty lists
+    // 将A[i]插入到A[i]的最高位所在的桶中，如12,15都归于桶1
+    for i = 0 to n-1 do 
+        insert A[i] into buckets[msbits(A[i], k)]
+    for i = 0 to n - 1 do 
+        next-sort(buckets[i])
+    return the concatenation of buckets[0], ..., buckets[n-1]</p></body></html>

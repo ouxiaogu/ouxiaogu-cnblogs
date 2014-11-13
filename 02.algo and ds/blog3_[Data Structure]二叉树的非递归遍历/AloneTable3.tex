@@ -1,0 +1,26 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{array,longtable}
+\setmainfont{SimSun}
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+\begin{table}[htbp]
+    \centering
+    % lcr 非常关键 代表三列数据各自的对齐方式
+    \begin{tabular}{ p{80pt}>{\centering} p{80pt}>{\raggedleft\arraybackslash} p{80pt}}
+        \toprule
+        操作系统& 发行版& 编辑器\\
+        \midrule
+        Windows & MikTeX & TexMakerX \\
+        Unix/Linux & teTeX & Kile \\
+        Mac OS & MacTeX & TeXShop \\
+        通用& TeX Live & TeXworks \\
+        \bottomrule
+    \end{tabular} %};
+\end{table}
+
+\end{document} 
