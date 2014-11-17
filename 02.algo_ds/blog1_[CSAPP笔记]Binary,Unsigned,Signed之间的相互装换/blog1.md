@@ -3,8 +3,12 @@
 
 Sublime Text 2 下使用Markdown写博客的处女作，试试效果。
 
+### 预备知识
+
+- 1 hexadecimal digit =  4 bits = 1 nibble =  1/2 byte
+
 ### 摘要 
-  本文主要讲解 Binary , Unsigned , Signed 三种数据中任意两者之间的转换。下面是文中的一些约定写法。
+  本文主要讲解 Binary , Unsigned , Signed 三种数据中任意两者之间的转换。下面是文中的一些**约定写法**。
 
 - 转换名称
     + B2U<sub>w</sub>\(***x***\) : 将位数为w的二进制数 *binary* 转换为无符号数*Unsigned*
